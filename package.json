@@ -1,0 +1,57 @@
+{
+  "name": "template-project",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Postnov/template-project.git"
+  },
+  "keywords": [],
+  "dependencies": {
+    "atob": "^2.1.2",
+    "babel-eslint": "^10.0.1",
+    "cryptiles": "^4.1.3",
+    "gulp-changed": "^3.2.0",
+    "gulp-cheerio": "^0.6.3",
+    "gulp-html2pug": "^1.2.1",
+    "gulp-plumber": "^1.2.1",
+    "gulp-replace": "^1.0.0",
+    "gulp-svgmin": "^2.1.0",
+    "hoek": "^6.1.2",
+    "sshpk": "^1.16.0"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Postnov/template-project/issues"
+  },
+  "homepage": "https://github.com/Postnov/template-project#readme",
+  "devDependencies": {
+    "@babel/core": "^7.3.4",
+    "@babel/preset-env": "^7.3.4",
+    "browser-sync": "^2.26.3",
+    "eslint": "^5.14.1",
+    "eslint-config-airbnb": "^17.1.0",
+    "gulp": "3.9.1",
+    "gulp-autoprefixer": "^6.0.0",
+    "gulp-babel": "^8.0.0",
+    "gulp-cssbeautify": "^1.0.1",
+    "gulp-csscomb": "^3.0.8",
+    "gulp-eslint": "^5.0.0",
+    "gulp-group-css-media-queries": "^1.2.2",
+    "gulp-imports": "0.0.3",
+    "gulp-minify": "^3.1.0",
+    "gulp-minify-css": "^1.2.4",
+    "gulp-pretty-html": "^2.0.9",
+    "gulp-pug": "^4.0.1",
+    "gulp-rename": "^1.4.0",
+    "gulp-sass": "^4.0.2",
+    "gulp-sequence": "^1.0.0",
+    "gulp-svg-sprite": "^1.5.0",
+    "gulp-tinypng-unlimited": "^1.0.3",
+    "rimraf": "^2.6.3"
+  }
+}
