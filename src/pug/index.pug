@@ -3,7 +3,7 @@ html(lang="ru")
 	include partails/head.pug
 	body
 
-		.detail-page
+		.detail-page.container
 			.breadcrumb
 				.breadcrumb_item
 					a(href="") Кровельные материалы
@@ -13,17 +13,26 @@ html(lang="ru")
 			h1.catalog__title Металлочерепица Kvinta плюс GreenCoat Pural Matt 0,5 RR 11 красный янтарь
 
 			//START GREETING
-			.detail-page__greeting.detail-greeting
+			.detail-page__greeting.detail-greeting.row
 				//START SLIDER
-				.detail-greeing__slider
-					.detail-greeing__slider--main
-						.detail-greeing__slide
-					.detail-greeing__slider--nav
-						.detail-greeing__thumbslide
+				.detail-greeting__sliders.col-md-5
+					.detail-greeting__slider-main.js-detail-main-slider
+						each i in [1,2,3,4,5,6]
+							a.detail-greeting__slide(data-fancybox="detail-gallery" href="images/detail-slider-main.jpg")
+								img(src="images/detail-slider-main.jpg" alt="")
+					.detail-greeting__slider-nav
+						.detail-greeting__slider-arrow.arrow-prev.js-detnav-prev
+							+icon('arrow-down')
+						.detail-greeting__slider-arrow.arrow-next.js-detnav-next
+							+icon('arrow-down')
+						.detail-greeting__nav-carousel.js-detail-nav-slider
+							each i in [1,2,3,1,2,3]
+								a.detail-greeting__thumb-slide(data-fancybox="detail-gallery" href=`images/nav-slider-${i}.jpg`)
+									img(src=`images/nav-slider-${i}.jpg` alt="")
 				//END SLIDER
 
 				//START INFO
-				.detail-greeting__info.detail-info
+				.detail-greeting__info.detail-info.col-md-6
 					.detail-info__header
 						.detail-info__product-price
 						.detail-info__low-price
@@ -70,7 +79,6 @@ html(lang="ru")
 						.detail-info__office-description
 							a Что такое выездной офис?
 							p услуга доступна только для Брянска
-
 				//END INFO
 
 			//END GREETING

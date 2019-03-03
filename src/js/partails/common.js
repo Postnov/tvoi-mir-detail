@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
+  // SLIDERS FOR DETAIL
 
-  // slider detail product
-
+  // addition products
   $('.js-detail-products').slick({
     slidesToShow: 4,
     slidesToScroll: 1,
@@ -10,5 +10,22 @@ document.addEventListener('DOMContentLoaded', () => {
     prevArrow: '.js-detprod-prev'
   });
 
+  // in start page, main image
+  $('.js-detail-main-slider').slick({
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    asNavFor: '.js-detail-nav-slider',
+    arrows: false,
+    infinite: false
+  });
 
+  // in start page, thumb image
+  $('.js-detail-nav-slider').slick({
+    slidesToShow: 3,
+    slidesToScroll: 1,
+    asNavFor: '.js-detail-main-slider',
+    nextArrow: '.js-detnav-next',
+    prevArrow: '.js-detnav-prev',
+    infinite: false
+  });
 });

@@ -3,5 +3,11 @@
     "parser": "babel-eslint",
     "rules": {
         "no-console": "off"
+    },
+    "env": {
+        "browser": true,
+        "commonjs": true,
+        "es6": true,
+        "jquery": true
     }
 }
