@@ -1,7 +1,212 @@
 doctype html
 html(lang="ru")
-    include partails/head.pug
-    body
+	include partails/head.pug
+	body
+
+		.detail-page
+			.breadcrumb
+				.breadcrumb_item
+					a(href="") Кровельные материалы
+				.breadcrumb_item
+					span Металлочерепица
+
+			h1.catalog__title Металлочерепица Kvinta плюс GreenCoat Pural Matt 0,5 RR 11 красный янтарь
+
+			//START GREETING
+			.detail-page__greeting.detail-greeting
+				//START SLIDER
+				.detail-greeing__slider
+					.detail-greeing__slider--main
+						.detail-greeing__slide
+					.detail-greeing__slider--nav
+						.detail-greeing__thumbslide
+				//END SLIDER
+
+				//START INFO
+				.detail-greeting__info.detail-info
+					.detail-info__header
+						.detail-info__product-price
+						.detail-info__low-price
+					.detail-info__body
+						.detail-info__table.d-i-table
+							.d-i-table__row
+								.d-i-table__col.blue-tip
+									span Длина
+								.d-i-table__col.blue-tip
+									span Ширина
+								.d-i-table__col
+									span Кол-во
+								.d-i-table__col
+									span Итого
+							// после обычной строки
+							.d-i-table__row.d-i-table__row--product
+								.d-i-table__col
+									.d-i-table__input
+								.d-i-table__col
+									.d-i-table__text
+								.d-i-table__col
+									.d-i-table__input
+								.d-i-table__col
+									.d-i-table__text
+						.detail-info__add-col Добавить лист другой длины
+					.detail-info__footer.d-i-footer
+						.detail-info__total-price Итого #[span 111 936 руб. ]
+						.d-i-footer__row
+							.detail-info__btn-buy.btn-buy в корзину
+							.detail-info__one-click.btn-white Купить в 1 клик
+							+icon('heart', 'detail-info__icon')
+							+icon('stat', 'detail-info__icon')
+						.d-i-footer__row
+							span 566 шт. в наличие в Ростове-на Дону
+						.d-i-footer__row.d-i-footer__row-links
+							a Наличие в других регионах
+							a Оплата
+							a Доставка
+
+					.detail-info__buttons
+						.detail-info__view-btn Вызвать замерщика
+						.detail-info__view-btn Рассчитать по вашим размерам
+						.detail-info__view-btn Заказать выездной офис
+						.detail-info__office-description
+							a Что такое выездной офис?
+							p услуга доступна только для Брянска
+
+				//END INFO
+
+			//END GREETING
 
 
-        include partails/scripts.pug
+			//START TABS
+			.detail-tabs
+				.detail-tabs__header
+					.detail-tabs__tab Характеристики
+					.detail-tabs__tab Описание
+					.detail-tabs__tab Файлы
+				.detail-tabs__container
+					.detail-tabs__tab-content
+						.detail-tab__table.detail-table
+							.detail-table__row
+								.detail-table__left
+									.detail-table__title Цвет
+								.detail-table__right
+									.detail-table__block-color.detail-block-color
+										div.detail-block-color__square
+										span.detail-block-color__title 8016 RAL
+									.detail-tabel__another-colors.detail-another-colors
+										span.detail-another-colors__title Другие цвета
+										.detail-another-colors__list
+											each i in [1,2,3,4,5,6]
+												.detail-another-colors__square
+							.detail-table__row
+								.detail-table__left
+									.detail-table__title Покрытие
+								.detail-table__right
+									.detail-table__text ПОЛИЭСТЕР (PE)
+									.detail-table-params
+										a.detail-table-params__link Характеристики покрытия
+										.detail-table-params__hidden
+											.detail-table-params__block
+												.detail-table-params__text
+												.detail-table-params__text
+												.detail-table-params__text
+											.detail-table-params__block
+												.detail-table-params__text
+												.detail-table-params__text
+												.detail-table-params__text
+											.detail-table-params__block
+												.detail-table-params__text
+												.detail-table-params__text
+												.detail-table-params__text
+
+							.detail-table__row
+								.detail-table__left
+									.detail-table__title Серия
+								.detail-table__right
+									.detail-table__text Супермонтеррей
+							.detail-table__row
+								.detail-table__left
+									.detail-table__title Вид поверхности
+								.detail-table__right
+									.detail-table__text глянцевая
+							.detail-table__row
+								.detail-table__left
+									.detail-table__title Содержание цинка
+								.detail-table__right
+									.detail-table__text 140 г/м2
+							.detail-table__row
+								.detail-table__left
+									.detail-table__title Толщина металла
+								.detail-table__right
+									.detail-table__text 0,5 мм
+
+					.detail-tabs__tab-content
+					.detail-tabs__tab-content
+						.detail-files
+							each i in [1,2,3]
+								.detail-files__item.file-item
+									.file-item__icon
+									.file-item__info
+										.file-item__title
+										.file-item__size
+
+			//END TABS
+
+			//START ADDITION PRODUCTS
+			.addition-products.container
+				.addition-products__title Не забудьте купить
+				.addition-products__list
+					each item in additionProducts
+						.addition-products__item.addition-product.col-md-3
+							.addition-product__img-wrapp
+								img.addition-product__img(src="images/"+item.img+"" alt="")
+							p.addition-product__name=item.name
+							span.addition-product__tip=item.tip
+
+			//END ADDITION PRODUCTS
+
+			//START PRODUCT-SLIDER
+			.detail-products.container
+				.detail-products__title Недавно просмотренные товары:
+				.detail-products__slider
+					.detail-products__slider-arrow.arrow-prev.js-detprod-prev
+						+icon('arrow-down')
+					.detail-products__slider-arrow.arrow-next.js-detprod-next
+						+icon('arrow-down')
+					.detail-products__carousel.js-detail-products
+						each i in [1,2,3,4,5,6,7]
+							.detail-products__slide.col-md-3
+								//START PRODUCT
+								.detail-products__product.product
+									span.product__label NEW
+
+									a.product__img-wrapp(href='#')
+										img.product__img(src="images/product-img.jpg" alt="")
+
+									p.product__title
+										a.product__link-wrapp(href='#') Металоочерепица Grandine Стальной шелк 0,5 RR 32 (красная заря)
+
+									.product__sale.product-sale
+										p.product-sale__text 550 #[i.fa.fa-ruble-sign]/м2
+										p.product-sale__percent -20%
+									footer.product__footer
+										p.product__price #[span.price-amount 233] #[i.fa.fa-ruble-sign]/м2
+										.product__icons
+											.product__icon-wrapp
+												+icon('cart', 'product__icon product__icon--cart')
+											.product__icon-wrapp
+												+icon('heart', 'product__icon product__icon--heart')
+											.product__icon-wrapp
+												img.product__icon.product__icon--stat(src="images/icon-stat.jpg" alt="")
+								//END PRODUCT
+			//END PRODUCT-SLIDER
+
+			//START MODALS
+
+			//start modal-involve-master
+			//end modal-involve-master
+
+			//END MODALS
+
+
+		include partails/scripts.pug
+

@@ -1,0 +1,45 @@
+.addition-products {
+    &__title {
+        font-size: 25px;
+        font-weight: 500;
+        line-height: 1.2;
+        margin-bottom: 25px;
+    }
+
+    &__item {
+        margin-bottom: 40px;
+    }
+}
+
+.addition-product {
+    text-align: center;
+
+    &__img-wrapp {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        overflow: hidden;
+        position: relative;
+        margin: 0 auto;
+    }
+    &__img {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+    &__name {
+        font-size: 16px;
+        font-weight: 600;
+        line-height: 1.2;
+        margin: 14px 0 8px;
+    }
+    &__tip {
+        color: #565b61;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 1;
+        border-bottom: 1px solid;
+        cursor: pointer;
+    }
+}

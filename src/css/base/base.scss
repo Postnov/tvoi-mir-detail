@@ -1,6 +1,6 @@
 body {
     font-size: 16px;
-    font-family: Arial;
+    font-family: $openSans;
     box-sizing: border-box;
     background-color: #f7f7f1;
 
@@ -24,23 +24,17 @@ img {
 // HELPERS
 
 .container {
-    max-width: 1200px;
+    max-width: 940px;
     padding-left: 25px;
     padding-right: 25px;
     margin-left: auto;
     margin-right: auto;
 }
 
-.demo-responsive {
-    width: 33%;
-
-    @include _768 {
-        width: 50%;
-    }
-
-    @include _480 {
-        width: 100%;
-    }
+.svg-arrow-down {
+    stroke: #000;
+    fill: transparent;
+    stroke-width: 2px;
 }
 
 // hidden svg-sprite block
