@@ -1,220 +1,403 @@
 doctype html
 html(lang="ru")
-	include partails/head.pug
-	body
+  include partails/head.pug
+  body
 
-		.detail-page.container
-			.breadcrumb
-				.breadcrumb_item
-					a(href="") Кровельные материалы
-				.breadcrumb_item
-					span Металлочерепица
+    .detail-page.page.container
+      .breadcrumb
+        .breadcrumb_item
+          a(href="") Кровельные материалы
+        .breadcrumb_item
+          span Металлочерепица
 
-			h1.catalog__title Металлочерепица Kvinta плюс GreenCoat Pural Matt 0,5 RR 11 красный янтарь
+      h1.page__title Металлочерепица Kvinta плюс GreenCoat Pural Matt 0,5 RR 11 красный янтарь
 
-			//START GREETING
-			.detail-page__greeting.detail-greeting.row
-				//START SLIDER
-				.detail-greeting__sliders.col-md-5
-					.detail-greeting__slider-main.js-detail-main-slider
-						each i in [1,2,3,4,5,6]
-							a.detail-greeting__slide(data-fancybox="detail-gallery" href="images/detail-slider-main.jpg")
-								img(src="images/detail-slider-main.jpg" alt="")
-					.detail-greeting__slider-nav
-						.detail-greeting__slider-arrow.arrow-prev.js-detnav-prev
-							+icon('arrow-down')
-						.detail-greeting__slider-arrow.arrow-next.js-detnav-next
-							+icon('arrow-down')
-						.detail-greeting__nav-carousel.js-detail-nav-slider
-							each i in [1,2,3,1,2,3]
-								a.detail-greeting__thumb-slide(data-fancybox="detail-gallery" href=`images/nav-slider-${i}.jpg`)
-									img(src=`images/nav-slider-${i}.jpg` alt="")
-				//END SLIDER
+      //START GREETING
+      .detail-page__greeting.detail-greeting
+        //START SLIDER
+        .detail-greeting__sliders.col-md-5
+          .detail-greeting__slider-main.js-detail-main-slider
+            each i in [1,2,3,4,5,6]
+              a.detail-greeting__slide(data-fancybox="detail-gallery-main" href="images/detail-slider-main.jpg")
+                img(src="images/detail-slider-main.jpg" alt="")
+          .detail-greeting__slider-nav
+            .detail-greeting__slider-arrow.arrow-prev.js-detnav-prev
+              +icon('arrow-down')
+            .detail-greeting__slider-arrow.arrow-next.js-detnav-next
+              +icon('arrow-down')
+            .detail-greeting__nav-carousel.js-detail-nav-slider
+              each i in [1,2,3,1,2,3]
+                a.detail-greeting__thumb-slide(data-fancybox="detail-gallery-nav" href=`images/detail-slider-main.jpg`)
+                  img(src=`images/nav-slider-${i}.jpg` alt="")
+        //END SLIDER
 
-				//START INFO
-				.detail-greeting__info.detail-info.col-md-6
-					.detail-info__header
-						.detail-info__product-price
-						.detail-info__low-price
-					.detail-info__body
-						.detail-info__table.d-i-table
-							.d-i-table__row
-								.d-i-table__col.blue-tip
-									span Длина
-								.d-i-table__col.blue-tip
-									span Ширина
-								.d-i-table__col
-									span Кол-во
-								.d-i-table__col
-									span Итого
-							// после обычной строки
-							.d-i-table__row.d-i-table__row--product
-								.d-i-table__col
-									.d-i-table__input
-								.d-i-table__col
-									.d-i-table__text
-								.d-i-table__col
-									.d-i-table__input
-								.d-i-table__col
-									.d-i-table__text
-						.detail-info__add-col Добавить лист другой длины
-					.detail-info__footer.d-i-footer
-						.detail-info__total-price Итого #[span 111 936 руб. ]
-						.d-i-footer__row
-							.detail-info__btn-buy.btn-buy в корзину
-							.detail-info__one-click.btn-white Купить в 1 клик
-							+icon('heart', 'detail-info__icon')
-							+icon('stat', 'detail-info__icon')
-						.d-i-footer__row
-							span 566 шт. в наличие в Ростове-на Дону
-						.d-i-footer__row.d-i-footer__row-links
-							a Наличие в других регионах
-							a Оплата
-							a Доставка
+        //START INFO
+        .detail-greeting__info.detail-info.col-md-7
+          .detail-info__header
+            .detail-info__product-price.js-det-price 413 руб./м
+            .detail-info__low-price Нашли дешевле? Снизим цену
+          .detail-info__body
+            .detail-info__table.d-i-table.js-det-table
+              .d-i-table__row.d-i-table__row--header
+                .d-i-table__col
+                  span Длина
+                  .blue-tip.js-open-modal(data-modal="tip-length")
+                .d-i-table__col
+                  span Ширина
+                  .blue-tip.js-open-modal(data-modal="tip-width")
+                .d-i-table__col
+                  span Кол-во
+                .d-i-table__col
+                  span Итого
+              // после обычной строки
+              .d-i-table__row.d-i-table__row--product.js-t-product-row
+                .d-i-table__col
+                  .d-i-table__choice-block.choice-block.js-choice
+                    input.choice-block__value.js-choice-value(type="tel" value="650 мм.")
+                    .choice-block__buttons
+                      .choice-block__button.js-d-choice-up
+                        +icon('arrow-down')
+                      .choice-block__button.js-d-choice-down
+                        +icon('arrow-down')
+                .d-i-table__col
+                  .d-i-table__text.js-row-product-width 1190 мм
+                .d-i-table__col
+                  .d-i-table__choice-block.choice-block.js-d-count
+                    input.choice-block__value.js-d-count-value(type="tel" value="10 шт.")
+                    .choice-block__buttons
+                      .choice-block__button.js-d-count-up
+                        +icon('arrow-down')
+                      .choice-block__button.js-d-count-down
+                        +icon('arrow-down')
+                .d-i-table__col
+                  .d-i-table__text.js-row-product-total 1,015 м
+                .d-i-table__delete.js-det-row-delete
 
-					.detail-info__buttons
-						.detail-info__view-btn Вызвать замерщика
-						.detail-info__view-btn Рассчитать по вашим размерам
-						.detail-info__view-btn Заказать выездной офис
-						.detail-info__office-description
-							a Что такое выездной офис?
-							p услуга доступна только для Брянска
-				//END INFO
+            .detail-info__add-col.js-det-add-product Добавить лист другой длины
 
-			//END GREETING
+          .detail-info__footer.d-i-footer
+            .detail-info__total-price Итого: #[span.js-det-total-price 111 936] #[span руб. ]
+            .d-i-footer__row-buy
+              .detail-info__btn.d-btn.d-btn--blue
+                +icon('cart')
+                span в корзину
+              .detail-info__one-click.d-btn.d-btn--wh-or.js-open-modal(data-modal="one-click") Купить в 1 клик
+              .icon-like
+              .icon-stat
+            p.d-i-footer__rest 566 шт. в наличие в Ростове-на Дону
+            .d-i-footer__row.d-i-footer__row-links
+              a.link.js-open-modal(data-modal="rest-city" href="#") Наличие в других регионах
+              .another-links
+                a.link.link--payment.js-open-modal(data-modal='payment' href='#') Оплата
+                a.link.link--delivery.js-open-modal(data-modal='delivery' href='#') Доставка
 
+          .detail-info__buttons
+            .detail-info__view-btn.d-btn.d-btn--wh-bl.js-open-modal(data-modal="involve-master")
+              +icon('icon-rules')
+              span Вызвать замерщика
+            .detail-info__view-btn.d-btn.d-btn--wh-bl
+              +icon('icon-calc')
+              span Рассчитать по вашим размерам
+            .detail-info__view-btn.d-btn.d-btn--wh-or.js-open-modal(data-modal="office")
+              +icon('icon-point-map')
+              span Заказать выездной офис
+            .link-descr
+              a.link Что такое выездной офис?
+              p услуга доступна только для Брянска
+        //END INFO
 
-			//START TABS
-			.detail-tabs
-				.detail-tabs__header
-					.detail-tabs__tab Характеристики
-					.detail-tabs__tab Описание
-					.detail-tabs__tab Файлы
-				.detail-tabs__container
-					.detail-tabs__tab-content
-						.detail-tab__table.detail-table
-							.detail-table__row
-								.detail-table__left
-									.detail-table__title Цвет
-								.detail-table__right
-									.detail-table__block-color.detail-block-color
-										div.detail-block-color__square
-										span.detail-block-color__title 8016 RAL
-									.detail-tabel__another-colors.detail-another-colors
-										span.detail-another-colors__title Другие цвета
-										.detail-another-colors__list
-											each i in [1,2,3,4,5,6]
-												.detail-another-colors__square
-							.detail-table__row
-								.detail-table__left
-									.detail-table__title Покрытие
-								.detail-table__right
-									.detail-table__text ПОЛИЭСТЕР (PE)
-									.detail-table-params
-										a.detail-table-params__link Характеристики покрытия
-										.detail-table-params__hidden
-											.detail-table-params__block
-												.detail-table-params__text
-												.detail-table-params__text
-												.detail-table-params__text
-											.detail-table-params__block
-												.detail-table-params__text
-												.detail-table-params__text
-												.detail-table-params__text
-											.detail-table-params__block
-												.detail-table-params__text
-												.detail-table-params__text
-												.detail-table-params__text
-
-							.detail-table__row
-								.detail-table__left
-									.detail-table__title Серия
-								.detail-table__right
-									.detail-table__text Супермонтеррей
-							.detail-table__row
-								.detail-table__left
-									.detail-table__title Вид поверхности
-								.detail-table__right
-									.detail-table__text глянцевая
-							.detail-table__row
-								.detail-table__left
-									.detail-table__title Содержание цинка
-								.detail-table__right
-									.detail-table__text 140 г/м2
-							.detail-table__row
-								.detail-table__left
-									.detail-table__title Толщина металла
-								.detail-table__right
-									.detail-table__text 0,5 мм
-
-					.detail-tabs__tab-content
-					.detail-tabs__tab-content
-						.detail-files
-							each i in [1,2,3]
-								.detail-files__item.file-item
-									.file-item__icon
-									.file-item__info
-										.file-item__title
-										.file-item__size
-
-			//END TABS
-
-			//START ADDITION PRODUCTS
-			.addition-products.container
-				.addition-products__title Не забудьте купить
-				.addition-products__list
-					each item in additionProducts
-						.addition-products__item.addition-product.col-md-3
-							.addition-product__img-wrapp
-								img.addition-product__img(src="images/"+item.img+"" alt="")
-							p.addition-product__name=item.name
-							span.addition-product__tip=item.tip
-
-			//END ADDITION PRODUCTS
-
-			//START PRODUCT-SLIDER
-			.detail-products.container
-				.detail-products__title Недавно просмотренные товары:
-				.detail-products__slider
-					.detail-products__slider-arrow.arrow-prev.js-detprod-prev
-						+icon('arrow-down')
-					.detail-products__slider-arrow.arrow-next.js-detprod-next
-						+icon('arrow-down')
-					.detail-products__carousel.js-detail-products
-						each i in [1,2,3,4,5,6,7]
-							.detail-products__slide.col-md-3
-								//START PRODUCT
-								.detail-products__product.product
-									span.product__label NEW
-
-									a.product__img-wrapp(href='#')
-										img.product__img(src="images/product-img.jpg" alt="")
-
-									p.product__title
-										a.product__link-wrapp(href='#') Металоочерепица Grandine Стальной шелк 0,5 RR 32 (красная заря)
-
-									.product__sale.product-sale
-										p.product-sale__text 550 #[i.fa.fa-ruble-sign]/м2
-										p.product-sale__percent -20%
-									footer.product__footer
-										p.product__price #[span.price-amount 233] #[i.fa.fa-ruble-sign]/м2
-										.product__icons
-											.product__icon-wrapp
-												+icon('cart', 'product__icon product__icon--cart')
-											.product__icon-wrapp
-												+icon('heart', 'product__icon product__icon--heart')
-											.product__icon-wrapp
-												img.product__icon.product__icon--stat(src="images/icon-stat.jpg" alt="")
-								//END PRODUCT
-			//END PRODUCT-SLIDER
-
-			//START MODALS
-
-			//start modal-involve-master
-			//end modal-involve-master
-
-			//END MODALS
+      //END GREETING
 
 
-		include partails/scripts.pug
+      //START TABS
+      .detail-tabs
+        .detail-tabs__header
+          .detail-tabs__tab Характеристики
+          .detail-tabs__tab Описание
+          .detail-tabs__tab Файлы
+        .detail-tabs__container
+          .detail-tabs__tab-content
+            .detail-tab__table.detail-table
+              .detail-table__row
+                .detail-table__left
+                  .detail-table__title Цвет
+                .detail-table__right
+                  .detail-table__block-color.detail-block-color
+                    div.detail-block-color__square
+                    span.detail-block-color__title 8016 RAL
+                  .detail-tabel__another-colors.detail-another-colors
+                    span.detail-another-colors__title Другие цвета
+                    .detail-another-colors__list
+                      each i in [1,2,3,4,5,6]
+                        .detail-another-colors__square
+              .detail-table__row
+                .detail-table__left
+                  .detail-table__title Покрытие
+                .detail-table__right
+                  .detail-table__text ПОЛИЭСТЕР (PE)
+                  .detail-table-params
+                    a.detail-table-params__link Характеристики покрытия
+                    .detail-table-params__hidden
+                      .detail-table-params__block
+                        .detail-table-params__text
+                        .detail-table-params__text
+                        .detail-table-params__text
+                      .detail-table-params__block
+                        .detail-table-params__text
+                        .detail-table-params__text
+                        .detail-table-params__text
+                      .detail-table-params__block
+                        .detail-table-params__text
+                        .detail-table-params__text
+                        .detail-table-params__text
+
+              .detail-table__row
+                .detail-table__left
+                  .detail-table__title Серия
+                .detail-table__right
+                  .detail-table__text Супермонтеррей
+              .detail-table__row
+                .detail-table__left
+                  .detail-table__title Вид поверхности
+                .detail-table__right
+                  .detail-table__text глянцевая
+              .detail-table__row
+                .detail-table__left
+                  .detail-table__title Содержание цинка
+                .detail-table__right
+                  .detail-table__text 140 г/м2
+              .detail-table__row
+                .detail-table__left
+                  .detail-table__title Толщина металла
+                .detail-table__right
+                  .detail-table__text 0,5 мм
+
+          .detail-tabs__tab-content
+          .detail-tabs__tab-content
+            .detail-files
+              each i in [1,2,3]
+                .detail-files__item.file-item
+                  .file-item__icon
+                  .file-item__info
+                    .file-item__title
+                    .file-item__size
+
+      //END TABS
+
+      //START ADDITION PRODUCTS
+      .addition-products.container
+        .addition-products__title Не забудьте купить
+        .addition-products__list
+          each item in additionProducts
+            .addition-products__item.addition-product.col-md-3
+              .addition-product__img-wrapp
+                img.addition-product__img(src="images/"+item.img+"" alt="")
+              p.addition-product__name=item.name
+              span.addition-product__tip=item.tip
+
+      //END ADDITION PRODUCTS
+
+      //START PRODUCT-SLIDER
+      .detail-products.container
+        .detail-products__title Недавно просмотренные товары:
+        .detail-products__slider
+          .detail-products__slider-arrow.arrow-prev.js-detprod-prev
+            +icon('arrow-down')
+          .detail-products__slider-arrow.arrow-next.js-detprod-next
+            +icon('arrow-down')
+          .detail-products__carousel.js-detail-products
+            each i in [1,2,3,4,5,6,7]
+              .detail-products__slide.col-md-3
+                //START PRODUCT
+                .detail-products__product.product
+                  span.product__label NEW
+
+                  a.product__img-wrapp(href='#')
+                    img.product__img(src="images/product-img.jpg" alt="")
+
+                  p.product__title
+                    a.product__link-wrapp(href='#') Металоочерепица Grandine Стальной шелк 0,5 RR 32 (красная заря)
+
+                  .product__sale.product-sale
+                    p.product-sale__text 550 #[i.fa.fa-ruble-sign]/м2
+                    p.product-sale__percent -20%
+                  footer.product__footer
+                    p.product__price #[span.price-amount 233] #[i.fa.fa-ruble-sign]/м2
+                    .product__icons
+                      .product__icon-wrapp
+                        +icon('cart', 'product__icon product__icon--cart')
+                      .product__icon-wrapp
+                        +icon('heart', 'product__icon product__icon--heart')
+                      .product__icon-wrapp
+                        img.product__icon.product__icon--stat(src="images/icon-stat.jpg" alt="")
+                //END PRODUCT
+      //END PRODUCT-SLIDER
+
+      //START MODALS
+      .overlay-white.js-modal-overlay
+
+      // start modal-rest-city
+      .modal.js-modal(data-modal="rest-city")
+        .modal__header
+          .modal__title Наличие в других регионах
+
+        .modal__body
+          table.modal-rest
+            tr
+              td Москва
+              td.rest-on 105 шт.
+            tr
+              td Санкт-Петербург
+              td под заказ
+            tr
+              td Самара
+              td.rest-on 105 шт.
+            tr
+              td Тольятти
+              td под заказ
+        //.modal__footer
+          p Далеко-далеко за словесными горами в стране гласных и согласных живут рыбные тексты. Дороге подпоясал решила даль? Коварный, заголовок домах. Предупреждал, он приставка?
+      // end modal-rest-city
+
+      //start modal-involve-master
+      .modal.js-modal(data-modal="involve-master")
+        .modal__header
+          .modal__title Вызвать замерщика
+          .modal__cross.js-modal-cross.js-modal-cross
+
+        .modal__body
+          form.modal__form.modal-form.js-modal-form
+            .modal-form__grid-2
+              input.modal-form__field(placeholder="Как вас зовут? *" required)
+              input.modal-form__field.js-mask-tel(type="tel" placeholder="Контактный телефон *" required)
+            .modal-form__grid-2
+              input.modal-form__field(type="email" placeholder="Email *" required)
+              input.modal-form__field(placeholder="Регион *" required)
+            .modal-form__grid
+              input.modal-form__field(placeholder="Адрес объекта")
+            .modal-form__grid
+              textarea.modal-form__field(placeholder="Опишите суть задачи *" required)
+            .modal-form__grid
+              label.custom-field
+                input.custom-field__input(type="checkbox" required)
+                span.custom-field__custom-input
+                  +icon('check','custom-field__sign')
+                span.custom-field__text Я принимаю #[a(href='#') условия использования персональных данных ]
+
+            button.modal-form__btn Отправить заявку
+      //end modal-involve-master
+
+      //start modal-office
+      .modal.js-modal(data-modal="office")
+        .modal__header
+          .modal__title Выездной офис
+          .modal__cross.js-modal-cross.js-modal-cross
+
+        .modal__body
+          form.modal__form.modal-form.js-modal-form
+            .modal-form__grid-2
+              input.modal-form__field(placeholder="Как вас зовут? *" required)
+              input.modal-form__field.js-mask-tel(type="tel" placeholder="Контактный телефон *" required)
+            .modal-form__grid-2
+              input.modal-form__field(type="email" placeholder="Email *" required)
+              input.modal-form__field(placeholder="Регион *" required)
+            .modal-form__grid
+              input.modal-form__field(placeholder="Адрес объекта")
+            .modal-form__grid
+              textarea.modal-form__field(placeholder="Опишите суть задачи *" required)
+            .modal-form__grid
+              label.custom-field
+                input.custom-field__input(type="checkbox" required)
+                span.custom-field__custom-input
+                  +icon('check','custom-field__sign')
+                span.custom-field__text Я принимаю #[a(href='#') условия использования персональных данных ]
+
+            button.modal-form__btn Отправить заявку
+      //end modal-office
+
+
+      // start modal-delivery
+      .modal.js-modal(data-modal="delivery")
+        .modal__header
+          .modal__title Доставка
+          .modal__cross.js-modal-cross
+        .modal__body.modal-descr
+          .modal-descr__block
+            p.modal-descr__title Доставка по Брянску и области
+            p.modal-descr__subtitle Стоимость доставки по Брянску — 400 руб, по области — рассчитывается индивидуально.
+
+            p #[b Сроки доставки:] в течение недели после прибытия товара на склад.
+
+          .modal-descr__block
+            p.modal-descr__title Доставка в регионы
+            p.modal-descr__subtitle Стоимость доставки в Калужскую и Смоленскую область рассчитывается индивидуально.
+
+            p #[b Сроки доставки:] в течение недели после прибытия товара на склад.
+
+          .modal-descr__block
+            p.modal-descr__title Самовывоз
+            p.modal-descr__subtitle С нашего склада вы всегда сможете забрать товар самостоятельно. Погрузка материала в транспортное средство осуществляется Продавцом. Выгрузка материала из транспортного средства осуществляется Покупателем.
+      // end modal-delivery
+
+      // start modal-delivery
+      .modal.js-modal(data-modal="payment")
+        .modal__header
+          .modal__title Оплата
+          .modal__cross.js-modal-cross
+        .modal__body.modal-descr
+          .modal-descr__block
+            p.modal-descr__title Доставка по Брянску и области
+            p.modal-descr__subtitle Стоимость доставки по Брянску — 400 руб, по области — рассчитывается индивидуально.
+      // end modal-delivery
+
+      // start modal-order-accept
+      .modal.js-modal(data-modal="order-accept")
+        .modal-accept
+          .modal__cross.js-modal-cross
+          img.modal-accept__icon(src='images/icon-check-modal.svg' alt="")
+          p.modal-accept__title Ваша заявка принята
+          p.modal-accept__subtitle Наши специалисты свяжутся с Вами в ближайшее время
+      // end modal-order-accept
+
+      //start modal-one-click
+      .modal.js-modal(data-modal="one-click")
+        .modal__header
+          .modal__title Купить в один клик
+          .modal__cross.js-modal-cross
+
+        .modal__body
+          form.modal__form.modal-form.js-modal-form
+            .modal-form__grid-2
+              input.modal-form__field(placeholder="Ваше имя *" required)
+              input.modal-form__field.js-mask-tel(type="tel" placeholder="Контактный телефон *" required)
+            .modal-form__grid
+              textarea.modal-form__field(placeholder="Комментарий к заказу")
+            .modal-form__grid
+              label.custom-field
+                input.custom-field__input(type="checkbox" required)
+                span.custom-field__custom-input
+                  +icon('check','custom-field__sign')
+                span.custom-field__text Я принимаю #[a(href='#') условия использования персональных данных ]
+            button.modal-form__btn Отправить заявку
+      //end modal-one-click
+
+
+      //modal tip
+      .modal.js-modal(data-modal="tip-length")
+        .modal-tip
+          .modal__cross.js-modal-cross
+          p.modal-tip__text Наши специалисты свяжутся с Вами в ближайшее время
+      // end modal-order-tip
+
+      //modal tip
+      .modal.js-modal(data-modal="tip-width")
+        .modal-tip
+          .modal__cross.js-modal-cross
+          p.modal-tip__text Наши специалисты свяжутся с Вами в ближайшее время
+      // end modal-order-tip
+
+      //END MODALS
+
+
+    include partails/scripts.pug
 

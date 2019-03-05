@@ -1,4 +1,40 @@
+ul.detail-info__options-length.js-hide-length
+    li 0
+    li 350
+    li 650
+    li 750
+    li 850
+    li 950
+    li 1150
+    li 1250
+
+script(type="text/template" id="new-row-product")
+    .d-i-table__row.d-i-table__row--product.js-t-product-row
+        .d-i-table__col
+            .d-i-table__choice-block.choice-block.js-choice
+                input.choice-block__value.js-choice-value(type="tel" value="0 мм.")
+                .choice-block__buttons
+                    .choice-block__button.js-d-choice-up
+                        +icon('arrow-down')
+                    .choice-block__button.js-d-choice-down
+                        +icon('arrow-down')
+        .d-i-table__col
+            .d-i-table__text.js-row-product-width 1190 мм
+        .d-i-table__col
+            .d-i-table__choice-block.choice-block.js-d-count
+                input.choice-block__value.js-d-count-value(type="tel" value="0 шт.")
+                .choice-block__buttons
+                    .choice-block__button.js-d-count-up
+                        +icon('arrow-down')
+                    .choice-block__button.js-d-count-down
+                        +icon('arrow-down')
+        .d-i-table__col
+            .d-i-table__text.js-row-product-total 0
+        .d-i-table__delete.js-det-row-delete
+
 script(src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js")
 script(src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.6/jquery.fancybox.min.js")
 script(src='https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js')
 script(src="js/main.js")
+
+include stack/sprite-result.pug

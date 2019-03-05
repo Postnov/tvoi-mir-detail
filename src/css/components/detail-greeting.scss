@@ -1,8 +1,20 @@
 .detail-greeting {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    flex-wrap: wrap;
+
+
     &__sliders {
+        width: 40%;
+
         img, a {
             outline: none;
         }
+    }
+
+    &__info {
+        width: 57%;
     }
 
     &__slider-main {

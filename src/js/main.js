@@ -2,7 +2,7 @@
  * Third party
  */
 
- //import('./partails/cacheSvg.js')
+ /* //import('./partails/cacheSvg.js') */
 
 /*
  * Custom

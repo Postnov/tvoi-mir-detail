@@ -1,0 +1,266 @@
+.js-modal-overlay {
+  z-index: 999;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  visibility: hidden;
+  opacity: 0;
+
+  &.is-show {
+    visibility: visible;
+    opacity: 1;
+  }
+}
+
+.overlay-white {
+  background-color: rgba(255,255,255, .6);
+}
+
+.modal {
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  position: fixed;
+  top: 55%;
+  left: 50%;
+  transform: translate(-50.1%, -50%);
+  min-width: 360px;
+  max-width: 600px;
+
+  border: 3px solid #D7DEE4;
+  box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.25);
+
+  background-color: #fff;
+  transition: .3s all;
+
+  &.is-show {
+    top: 50%;
+    visibility: visible;
+    opacity: 1;
+  }
+
+
+  &__header {
+    padding: 26px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid rgba(215, 222, 228, .5);
+  }
+
+  &__title {
+    font-weight: bold;
+    font-size: 15px;
+    text-transform: uppercase;
+  }
+
+  &__body {
+    padding: 26px;
+  }
+
+  &__footer {
+    padding: 26px;
+    border-top: 1px solid rgba(215, 222, 228, .5);
+
+    p {
+      margin: 0 0 10px;
+    }
+  }
+
+  &__cross {
+    width: 14px;
+    height: 14px;
+    background-image: url('../images/icon-cross.svg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    transition: .3s all;
+    cursor: pointer;
+
+    &:hover {
+      transform: rotate(90deg);
+    }
+  }
+}
+
+
+.modal-rest {
+  font-size: 15px;
+
+  tr {
+    display: block;
+
+    &:not(:last-child) {
+      padding-bottom: 30px;
+    }
+  }
+
+  td {
+    display: inline-block;
+    &:first-child {
+      width: 140px;
+      margin-right: 20px;
+    }
+    &:last-child {
+      font-size: 13px;
+      color: #565b61;
+    }
+    &.rest-on {
+      color: #009933;
+    }
+  }
+}
+
+.modal-form {
+  max-width: 450px;
+
+  textarea {
+    height: 100px;
+    resize: none;
+  }
+
+  &__grid,
+  &__grid-2,
+  &__grid-3 {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+  }
+
+  &__grid {
+    textarea,
+    input {
+      width: 100%;
+    }
+  }
+
+  &__grid-2  input {
+    width: 49%;
+  }
+
+  &__grid-3 input{
+    width: 32%;
+  }
+
+  &__field {
+    padding: 10px 15px;
+    border: 1px solid #d7dee4;
+    background-color: #ffffff;
+    outline: none;
+    font-size: 14px;
+    color: #000;
+
+    &.error {
+      border-color: crimson;
+    }
+
+    &::-webkit-input-placeholder {
+      font-size: 14px;
+      color: #000;
+      font-weight: 400;
+    }
+    &::-moz-placeholder {
+      font-size: 14px;
+      color: #000;
+      font-weight: 400;
+    }
+    &:-ms-input-placeholder {
+      font-size: 14px;
+      color: #000;
+      font-weight: 400;
+    }
+    &:-moz-placeholder {
+      font-size: 14px;
+      color: #000;
+      font-weight: 400;
+    }
+
+    @include _480 {
+      width: 100%;
+    }
+  }
+
+  &__btn {
+    background-color: #ff8a02;
+    margin: 0 auto;
+    display: block;
+    padding: 13px 17px;
+    color: #fff;
+    border: none;
+    font-weight: 700;
+    font-size: 13px;
+    text-transform: uppercase;
+    cursor: pointer;
+    margin-top: 20px;
+
+    &:hover {
+      background-color: darken(#ff8a02, 3%);
+    }
+  }
+}
+
+.modal-descr {
+  font-size: 14px;
+
+  &__block {
+    margin-bottom: 15px;
+  }
+  &__title {
+    margin: 0;
+    font-weight: 700;
+  }
+
+  &__subtitle {
+    margin: 2px 0 0;
+  }
+}
+
+.modal-accept {
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 40px 0;
+  max-width: 500px;
+  width: 100%;
+
+  .modal__cross {
+    position: absolute;
+    top: 30px;
+    right: 30px;
+  }
+
+  &__title {
+    font-size: 20px;
+    font-weight: 700;
+    width: 100%;
+    margin: 14px 0 0;
+  }
+  &__subtitle {
+    color: #565b61;
+    font-size: 15px;
+    font-weight: 400;
+    max-width: 265px;
+    margin: 0 auto 0;
+  }
+}
+
+
+.modal-tip {
+  padding: 40px 20px;
+
+  .modal__cross {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+  }
+
+  &__text {
+    margin: 15px 0;
+    max-width: 300px;
+  }
+}

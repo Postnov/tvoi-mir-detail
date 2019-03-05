@@ -1,20 +1,25 @@
 @import 'base/vars.scss';
 @import 'base/media-mixin.scss';
 
-//base
-@import 'base/base.scss';
-@import 'base/normalize.scss';
-@import 'base/fonts.scss';
-
-
 //libs
 @import 'libs/bootstrap-grid.min.scss';
+
+//base
+@import 'base/normalize.scss';
+@import 'base/base.scss';
+@import 'base/fonts.scss';
+@import 'base/helpers.scss';
+
+
 
 //components
 @import 'components/product.scss';
 @import 'components/detail-products.scss';
 @import 'components/addition-products.scss';
 @import 'components/detail-greeting.scss';
+@import 'components/detail-info.scss';
+@import 'components/modals.scss';
+@import 'components/breadcrumbs.scss';
 // @import 'components';
 
 

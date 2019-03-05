@@ -1,46 +1,44 @@
 body {
-    font-size: 16px;
-    font-family: $openSans;
-    box-sizing: border-box;
-    background-color: #f7f7f1;
+  font-size: 16px;
+  font-family: $openSans;
+  box-sizing: border-box;
+  background-color: #fff;
 
-    &.no-scroll {
-        overflow: hidden;
-    }
+  &.no-scroll {
+    overflow: hidden;
+    padding-right: 16px;
+  }
 }
 
-*{
-    box-sizing: inherit;
+* {
+  box-sizing: inherit;
 }
 
 p {
-    line-height: 1.5;
+  line-height: 1.5;
 }
 
 img {
-    max-width: 100%;
+  max-width: 100%;
 }
 
-// HELPERS
-
-.container {
-    max-width: 940px;
-    padding-left: 25px;
-    padding-right: 25px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.svg-arrow-down {
-    stroke: #000;
-    fill: transparent;
-    stroke-width: 2px;
+.page {
+  &__title {
+    font-size: 25px;
+    font-weight: 600;
+    margin-bottom: 50px;
+    max-width: 780px;
+  }
 }
 
 // hidden svg-sprite block
 
 .svg-vect-sprite {
-    position: absolute;
-    top: -999999px;
-    left: -999999px;
+  position: absolute;
+  top: -999999px;
+  left: -999999px;
+}
+
+svg use {
+  pointer-events: none;
 }
