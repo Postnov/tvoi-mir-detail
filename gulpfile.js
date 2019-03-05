@@ -104,16 +104,16 @@ var svgconfig = {
 gulp.task('svg:compile', function (cb) {
     return gulp.src(path.src.svgSep)
         //minify svg
-        .pipe(svgmin({
-            js2svg: {
-                pretty: true
-            }
-        }))
+        // .pipe(svgmin({
+        //     js2svg: {
+        //         pretty: true
+        //     }
+        // }))
 		// remove all fill and style declarations in out shapes
 		.pipe(cheerio({
 			run: function ($) {
-				$('[fill]').removeAttr('fill');
-                $('[style]').removeAttr('style');
+				// $('[fill]').removeAttr('fill');
+                // $('[style]').removeAttr('style');
 			},
 			parserOptions: { xmlMode: true }
         }))
