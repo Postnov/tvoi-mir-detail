@@ -40,6 +40,10 @@
     height: 16px;
     background-image: url('../images/icon-truck.svg');
   }
+
+  &:hover {
+    border-color: transparent;
+  }
 }
 
 .link-descr {

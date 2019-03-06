@@ -35,10 +35,10 @@ html(lang="ru")
         .detail-greeting__info.detail-info.col-md-7
           .detail-info__header
             .detail-info__product-price.js-det-price 413 руб./м
-            .detail-info__low-price Нашли дешевле? Снизим цену
+            .detail-info__low-price.link Нашли дешевле? Снизим цену
           .detail-info__body
             .detail-info__table.d-i-table.js-det-table
-              .d-i-table__row.d-i-table__row--header
+              .d-i-table__row.d-i-table__row--header.view-row-1
                 .d-i-table__col
                   span Длина
                   .blue-tip.js-open-modal(data-modal="tip-length")
@@ -49,8 +49,9 @@ html(lang="ru")
                   span Кол-во
                 .d-i-table__col
                   span Итого
-              // после обычной строки
-              .d-i-table__row.d-i-table__row--product.js-t-product-row
+
+              // выбор длинны и количества
+              .d-i-table__row.d-i-table__row--product.js-t-product-row.calc-type-1.view-row-1
                 .d-i-table__col
                   .d-i-table__choice-block.choice-block.js-choice
                     input.choice-block__value.js-choice-value(type="tel" value="650 мм.")
@@ -73,7 +74,99 @@ html(lang="ru")
                   .d-i-table__text.js-row-product-total 1,015 м
                 .d-i-table__delete.js-det-row-delete
 
-            .detail-info__add-col.js-det-add-product Добавить лист другой длины
+              br
+              br
+
+              .d-i-table__row.d-i-table__row--header.view-row-2
+                .d-i-table__col
+                  span Длина
+                  .blue-tip.js-open-modal(data-modal="tip-length")
+                .d-i-table__col
+                  span Ширина
+                  .blue-tip.js-open-modal(data-modal="tip-width")
+                .d-i-table__col
+                  span Кол-во
+                .d-i-table__col
+                  span Итого
+
+              // количество, длина, ширина. Выбор количества
+              .d-i-table__row.d-i-table__row--product.js-t-product-row.calc-type-1.view-row-2
+                .d-i-table__col
+                  .d-i-table__text.js-choice-value 850 мм
+                .d-i-table__col
+                  .d-i-table__text.js-row-product-width 1190 мм
+                .d-i-table__col
+                  .d-i-table__choice-block.choice-block.js-d-count
+                    input.choice-block__value.js-d-count-value(type="tel" value="10 шт.")
+                    .choice-block__buttons
+                      .choice-block__button.js-d-count-up
+                        +icon('arrow-down')
+                      .choice-block__button.js-d-count-down
+                        +icon('arrow-down')
+                .d-i-table__col
+                  .d-i-table__text.js-row-product-total 1,015 м
+
+                .detail-info__add-col.js-det-add-product.link Добавить лист другой длины
+
+              br
+              br
+
+              .d-i-table__row.d-i-table__row--header.view-row-3
+                .d-i-table__col
+                  span Кол-во в уп.
+                .d-i-table__col
+                  span Кол-во
+                .d-i-table__col
+                  span Итого
+
+              // выбор количества строка м2
+              .d-i-table__row.d-i-table__row--product.js-t-product-row.calc-type-4.view-row-3
+                .d-i-table__col
+                  .d-i-table__text.js-choice-value 850 м#[span.degree 3]
+                .d-i-table__col
+                  .d-i-table__choice-block.choice-block.js-d-count
+                    input.choice-block__value.js-d-count-value(type="tel" value="10 шт.")
+                    .choice-block__buttons
+                      .choice-block__button.js-d-count-up
+                        +icon('arrow-down')
+                      .choice-block__button.js-d-count-down
+                        +icon('arrow-down')
+                .d-i-table__col
+                  .d-i-table__text.js-row-product-total #[span.res 1,015] м#[span.degree 3]
+
+              // выбор количества строка м2 и м3
+              .d-i-table__row.d-i-table__row--product.js-t-product-row.calc-type-3.view-row-3
+                .d-i-table__col
+                  .d-i-table__text.js-choice-value 850 м#[span.degree 2]
+                  .d-i-table__text.js-choice-value 350 м#[span.degree 3]
+                .d-i-table__col
+                  .d-i-table__choice-block.choice-block.js-d-count
+                    input.choice-block__value.js-d-count-value(type="tel" value="10 шт.")
+                    .choice-block__buttons
+                      .choice-block__button.js-d-count-up
+                        +icon('arrow-down')
+                      .choice-block__button.js-d-count-down
+                        +icon('arrow-down')
+                .d-i-table__col
+                  .d-i-table__text.js-row-product-total #[span.res 0] м#[span.degree 2]
+                  .d-i-table__text.js-row-product-total #[span.res 0] м#[span.degree 3]
+
+              br
+              br
+
+              .d-i-table__row.d-i-table__row--header
+                .d-i-table__col
+                  span Кол-во
+              // выбор только количества
+              .d-i-table__row.d-i-table__row--product.js-t-product-row.calc-type-2
+                .d-i-table__col
+                  .d-i-table__choice-block.choice-block.js-d-count
+                    input.choice-block__value.js-d-count-value(type="tel" value="10 шт.")
+                    .choice-block__buttons
+                      .choice-block__button.js-d-count-up
+                        +icon('arrow-down')
+                      .choice-block__button.js-d-count-down
+                        +icon('arrow-down')
 
           .detail-info__footer.d-i-footer
             .detail-info__total-price Итого: #[span.js-det-total-price 111 936] #[span руб. ]

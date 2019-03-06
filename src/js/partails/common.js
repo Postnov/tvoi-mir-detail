@@ -94,7 +94,11 @@ document.addEventListener('DOMContentLoaded', () => {
   $(document).on('focusout', '.js-d-count-value', (e) => {
     let value = e.target.value;
     value = parseInt(value, 10);
-    e.target.value = value + ' шт.';
+    if (!Number.isNaN(value)) {
+      e.target.value = value + ' шт.';
+    }else {
+      e.target.value = '0 шт.';
+    }
   });
 
   calcProductsRow();
@@ -109,28 +113,61 @@ document.addEventListener('DOMContentLoaded', () => {
 
     $('.js-t-product-row').each((i, el) => {
       let lengthEl = $(el).find('.js-choice-value'),
-        length = lengthEl.val(),
-        width = $(el).find('.js-row-product-width').text(),
-        amount = $(el).find('.js-d-count-value').val(),
+        length = lengthEl.val() || lengthEl.text() || 0,
+        width = $(el).find('.js-row-product-width'),
+        widthText = width.text(),
+        amount = $(el).find('.js-d-count-value'),
+        amountVal = amount.val(),
         totalEl = $(el).find('.js-row-product-total'),
         totalRow = 0;
 
+      amountVal = parseInt(amount.val());
       length = parseInt(length, 10);
-      width = parseInt(width, 10);
-      amount = parseInt(amount, 10);
+      widthText = parseInt(widthText, 10);
 
-      totalRow = (length * width * amount) / 1000000;
-      totalEl.html(totalRow.toLocaleString() + ' м');
+      if ($(el).hasClass('calc-type-1')) {
+        totalRow = (length * widthText * amountVal) / 1000000;
+        if (!Number.isNaN(+totalRow)) {
+          totalEl.html(totalRow.toLocaleString() + ' м');
+        } else {
+          totalEl.html('0 м');
+        }
 
-      totalRowSum += totalRow;
+        totalRowSum += totalRow;
+      }
+      if ($(el).hasClass('calc-type-2')) {
+        totalRowSum = amountVal;
+      }
+      if ($(el).hasClass('calc-type-3')) {
+        lengthEl.each((i, el) => {
+          let res = parseInt(el.innerHTML, 10) * amountVal;
+          if (!Number.isNaN(+res)) {
+            $(totalEl[i]).find('span.res').text(res.toLocaleString('en-IN'));
+          }else {
+            $(totalEl[i]).find('span.res').text('0');
+          }
+        });
+
+        totalRowSum = parseInt(amountVal, 10);
+      }
+      if ($(el).hasClass('calc-type-4')) {
+        let res = length * amountVal;
+        if (!Number.isNaN(+res)) {
+          $(totalEl).find('span.res').text(res.toLocaleString('en-IN'));
+        }else {
+          $(totalEl).find('span.res').text('0');
+        }
+
+        totalRowSum = parseInt(amountVal, 10);
+      }
     });
 
     totalPrice = (price * totalRowSum).toFixed(0);
 
-    if (!Number.isNaN(totalPrice)) {
+    if (!Number.isNaN(+totalPrice)) {
       totalPriceEl.text(Number(totalPrice).toLocaleString());
     } else {
-      totalPriceEl.text('0 шт.');
+      totalPriceEl.text('0');
     }
   }
 
