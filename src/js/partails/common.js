@@ -12,7 +12,18 @@ document.addEventListener('DOMContentLoaded', () => {
     slidesToScroll: 1,
     infinite: false,
     nextArrow: '.js-detprod-next',
-    prevArrow: '.js-detprod-prev'
+    prevArrow: '.js-detprod-prev',
+    arrows: true,
+    responsive: [
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+          arrows: false
+        }
+      },
+    ]
   });
 
   // in start page, main image
@@ -21,7 +32,18 @@ document.addEventListener('DOMContentLoaded', () => {
     slidesToScroll: 1,
     asNavFor: '.js-detail-nav-slider',
     arrows: false,
-    infinite: false
+    infinite: false,
+    responsive: [
+      {
+        breakpoint: 990,
+        settings: {
+          infinite: false,
+          arrows: true,
+          nextArrow: '.js-detmain-next',
+          prevArrow: '.js-detmain-prev',
+        }
+      }
+    ]
   });
 
   // in start page, thumb image
@@ -31,7 +53,16 @@ document.addEventListener('DOMContentLoaded', () => {
     asNavFor: '.js-detail-main-slider',
     nextArrow: '.js-detnav-next',
     prevArrow: '.js-detnav-prev',
-    infinite: false
+    infinite: false,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 1,
+        }
+      }
+    ]
   });
 
   $('.js-det-add-product').click(() => {
@@ -77,7 +108,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (newValue === '') {
       let previousValue = e.target.getAttribute('data-previous-value');
-      console.log(previousValue);
       $(e.target).val(previousValue);
       console.warn('Ошибка, такого показателя длинны нет, установлено предыдущее значение');
     }
@@ -202,7 +232,7 @@ document.addEventListener('DOMContentLoaded', () => {
             value = $(el).next().text() + ' мм.';
             elemValue.val(value);
           } else {
-            console.log('Выбрано последнее значение - 1250');
+            console.warn('Выбрано последнее значение - 1250');
           }
         }
         return el;
@@ -214,7 +244,7 @@ document.addEventListener('DOMContentLoaded', () => {
             value = $(el).prev().text() + ' мм.';
             elemValue.val(value);
           } else {
-            console.log('Выбрано первое значение - 0');
+            console.warn('Выбрано первое значение - 0');
           }
         }
         return el;
@@ -235,10 +265,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // MODALS
 
-  $('.js-open-modal').click(function (e) {
+  $(document).on('click', '.js-open-modal', function (e) {
     e.preventDefault();
 
-    let dataModal = $(this).attr('data-modal'),
+    let dataModal = $(e.target).attr('data-modal'),
       targetModal = $(`.js-modal[data-modal='${dataModal}']`);
 
     overlay.addClass('is-show');
@@ -246,7 +276,9 @@ document.addEventListener('DOMContentLoaded', () => {
     $('body').addClass('no-scroll');
   });
 
-  $('.js-modal-cross').click(function () {
+  $('.js-modal-close').click(function (e) {
+    e.preventDefault();
+
     $(this).closest('.js-modal').removeClass('is-show');
     overlay.removeClass('is-show');
     $('body').removeClass('no-scroll');
@@ -263,4 +295,61 @@ document.addEventListener('DOMContentLoaded', () => {
     $(this).removeClass('is-show');
     $('body').removeClass('no-scroll');
   });
+
+
+  // tabs on detail
+  $('.js-tab-trigger').on('click', function () {
+    let tabName = $(this).data('tab'),
+      tab = $(`.js-tab-content[data-tab="${tabName}"]`),
+      tabsParent = $(this).closest('.js-tabs');
+
+    tabsParent.find('.js-tab-trigger.is-active').removeClass('is-active');
+    $(this).addClass('is-active');
+
+    tabsParent.find('.js-tab-content.is-active').removeClass('is-active');
+    tab.addClass('is-active');
+  });
+
+  // move and accord for mobile tabs
+  if ($(window).width() < 769) {
+    let accordsContent = document.querySelectorAll('.js-accord-content');
+
+    $('.js-tab-content').each(function(index, item) {
+      let content = item.innerHTML;
+
+      accordsContent[index].innerHTML = content;
+    });
+  }
+
+  // tabs on detail
+  $('.js-accord-trigger').on('click', function () {
+
+    let trigger = $(this),
+      block = $(this).closest('.js-accord-block'),
+      content = block.find('.js-accord-content');
+
+      trigger.toggleClass('is-active');
+      content.toggleClass('is-active');
+  });
+
+
+  if ($(window).width() < 768) {
+    $('.js-params-link')
+    .removeClass('js-params-link')
+    .addClass('js-open-modal')
+    .attr('data-modal', 'table-params');
+
+    // colors
+
+    $('.js-color-trigger')
+      .addClass('link js-open-modal')
+      .attr('data-modal', 'another-colors');
+  }
+
+  // params in tabs
+  $('.js-params-link').click(function () {
+    $(this).closest('.js-params').find('.js-params-hidden').toggleClass('is-active');
+    $(this).toggleClass('is-active');
+  });
 });
+// end ready
