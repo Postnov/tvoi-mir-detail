@@ -4,6 +4,8 @@ document.addEventListener('DOMContentLoaded', () => {
     hiddenBlockLength = $('.js-hide-length'),
     overlay = $('.js-modal-overlay');
 
+  calcProductsRow();
+
   // SLIDERS FOR DETAIL
 
   // addition products
@@ -22,11 +24,11 @@ document.addEventListener('DOMContentLoaded', () => {
           slidesToScroll: 2,
           arrows: false
         }
-      },
+      }
     ]
   });
 
-  // in start page, main image
+  // in start page, main slider
   $('.js-detail-main-slider').slick({
     slidesToShow: 1,
     slidesToScroll: 1,
@@ -40,13 +42,13 @@ document.addEventListener('DOMContentLoaded', () => {
           infinite: false,
           arrows: true,
           nextArrow: '.js-detmain-next',
-          prevArrow: '.js-detmain-prev',
+          prevArrow: '.js-detmain-prev'
         }
       }
     ]
   });
 
-  // in start page, thumb image
+  // in start page, thumb slider
   $('.js-detail-nav-slider').slick({
     slidesToShow: 3,
     slidesToScroll: 1,
@@ -59,35 +61,41 @@ document.addEventListener('DOMContentLoaded', () => {
         breakpoint: 1024,
         settings: {
           slidesToShow: 3,
-          slidesToScroll: 1,
+          slidesToScroll: 1
         }
       }
     ]
   });
 
+  // CALC IN INFO BLOCK
+
+  // add row in calc
   $('.js-det-add-product').click(() => {
     tableProducts.append(templateRowProduct);
     checkList();
     calcProductsRow();
   });
 
+  // delete row from calc
   $(document).on('click', '.js-det-row-delete', (e) => {
     $(e.target).closest('.d-i-table__row').remove();
     checkList();
     calcProductsRow();
   });
 
-
+  // increase and decrease option length in calculation
   $(document).on('click', '.js-d-choice-up, .js-d-choice-down', (e) => {
     switchVariablesLength(e);
     calcProductsRow();
   });
 
+  // save previuos value for focusin
   $(document).on('focusin', '.js-choice-value', (e) => {
     let value = e.target.value;
     e.target.setAttribute('data-previous-value', value);
   });
 
+  // set saved value for focusout, when value don't correctly
   $(document).on('focusout', '.js-choice-value', (e) => {
     let value = $(e.target).val(),
       arr = hiddenBlockLength.children(),
@@ -96,12 +104,10 @@ document.addEventListener('DOMContentLoaded', () => {
     value = value.replace(' мм.', '');
 
     arr.map((i, el) => {
-      if (newValue === '') {
-        if ($(el).text() === value) {
-          newValue = $(el).text();
-          $(e.target).val(newValue + ' мм.');
-          calcProductsRow();
-        }
+      if (newValue === '' && $(el).text() === value) {
+        newValue = $(el).text();
+        $(e.target).val(newValue + ' мм.');
+        calcProductsRow();
       }
       return el;
     });
@@ -114,25 +120,25 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
 
-  // Count product row
+  // Count product row for click on arrow buttons
   $(document).on('click', '.js-d-count-up, .js-d-count-down', (e) => {
     countProductRow(e);
   });
+
+  // Count product row for key up
   $(document).on('keyup', '.js-d-count-value', () => {
     calcProductsRow();
   });
+
+  // set value in count field, when input contains letters
   $(document).on('focusout', '.js-d-count-value', (e) => {
     let value = e.target.value;
     value = parseInt(value, 10);
-    if (!Number.isNaN(value)) {
-      e.target.value = value + ' шт.';
-    }else {
-      e.target.value = '0 шт.';
-    }
+
+    e.target.value = (!Number.isNaN(value)) ? value + ' шт.' : '0 шт';
   });
 
-  calcProductsRow();
-
+  // function for calculation in product row from table
   function calcProductsRow() {
     let totalRowSum = 0,
       totalPrice = 0,
@@ -151,7 +157,7 @@ document.addEventListener('DOMContentLoaded', () => {
         totalEl = $(el).find('.js-row-product-total'),
         totalRow = 0;
 
-      amountVal = parseInt(amount.val());
+      amountVal = parseInt(amount.val(), 10);
       length = parseInt(length, 10);
       widthText = parseInt(widthText, 10);
 
@@ -169,12 +175,12 @@ document.addEventListener('DOMContentLoaded', () => {
         totalRowSum = amountVal;
       }
       if ($(el).hasClass('calc-type-3')) {
-        lengthEl.each((i, el) => {
-          let res = parseInt(el.innerHTML, 10) * amountVal;
+        lengthEl.each((index, item) => {
+          let res = parseInt(item.innerHTML, 10) * amountVal;
           if (!Number.isNaN(+res)) {
-            $(totalEl[i]).find('span.res').text(res.toLocaleString('en-IN'));
-          }else {
-            $(totalEl[i]).find('span.res').text('0');
+            $(totalEl[index]).find('span.res').text(res.toLocaleString('en-IN'));
+          } else {
+            $(totalEl[index]).find('span.res').text('0');
           }
         });
 
@@ -184,7 +190,7 @@ document.addEventListener('DOMContentLoaded', () => {
         let res = length * amountVal;
         if (!Number.isNaN(+res)) {
           $(totalEl).find('span.res').text(res.toLocaleString('en-IN'));
-        }else {
+        } else {
           $(totalEl).find('span.res').text('0');
         }
 
@@ -201,6 +207,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  // increase/decrease in count block
   function countProductRow(e) {
     let target = $(e.target),
       parent = target.closest('.js-d-count'),
@@ -209,15 +216,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (target.hasClass('js-d-count-up')) {
       value += 1;
-      valueElem.val(value + ' шт.');
     } else if (target.hasClass('js-d-count-down') && value > 0) {
       value -= 1;
-      valueElem.val(value + ' шт.');
     }
 
+    valueElem.val(value + ' шт.');
     calcProductsRow();
   }
 
+  // increase/decrease in length block
   function switchVariablesLength(e) {
     let elemValue = $(e.target).closest('.js-choice').find('.js-choice-value'),
       value = elemValue.val(),
@@ -227,25 +234,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if ($(e.target).hasClass('js-d-choice-up')) {
       hiddenElemsLength.map((i, el) => {
-        if ($(el).text() === value) {
-          if ($(el).next().length) {
-            value = $(el).next().text() + ' мм.';
-            elemValue.val(value);
-          } else {
-            console.warn('Выбрано последнее значение - 1250');
-          }
+        if ($(el).text() === value && $(el).next().length) {
+          value = $(el).next().text() + ' мм.';
+          elemValue.val(value);
+        } else {
+          console.warn('Выбрано последнее значение - 1250');
         }
         return el;
       });
     } else if ($(e.target).hasClass('js-d-choice-down')) {
       hiddenElemsLength.map((i, el) => {
-        if ($(el).text() === value) {
-          if ($(el).prev().length) {
-            value = $(el).prev().text() + ' мм.';
-            elemValue.val(value);
-          } else {
-            console.warn('Выбрано первое значение - 0');
-          }
+        if ($(el).text() === value && $(el).prev().length) {
+          value = $(el).prev().text() + ' мм.';
+          elemValue.val(value);
+        } else {
+          console.warn('Выбрано первое значение - 0');
         }
         return el;
       });
@@ -255,16 +258,15 @@ document.addEventListener('DOMContentLoaded', () => {
   // check product row for manage visible block with table
   function checkList() {
     let lengthProductRows = $('.d-i-table__row--product').length;
-    if (lengthProductRows) {
-      $('.js-det-table').show();
-    } else {
-      $('.js-det-table').hide();
-    }
+
+    if (lengthProductRows) $('.js-det-table').show();
+    else $('.js-det-table').hide();
   }
 
 
-  // MODALS
+  // MODAL WINDOWS
 
+  // open modals for click
   $(document).on('click', '.js-open-modal', function (e) {
     e.preventDefault();
 
@@ -276,6 +278,7 @@ document.addEventListener('DOMContentLoaded', () => {
     $('body').addClass('no-scroll');
   });
 
+  // close modal for click on close button
   $('.js-modal-close').click(function (e) {
     e.preventDefault();
 
@@ -284,18 +287,19 @@ document.addEventListener('DOMContentLoaded', () => {
     $('body').removeClass('no-scroll');
   });
 
+  // show modal-success when form will be send
   $('.js-modal-form').submit(function (e) {
     e.preventDefault();
     $(this).closest('.js-modal').removeClass('is-show');
     $('.js-modal[data-modal="order-accept"]').addClass('is-show');
   });
 
+  // hide visible modal window, when click for overlay
   $('.js-modal-overlay').click(function () {
     $('.js-modal.is-show').removeClass('is-show');
     $(this).removeClass('is-show');
     $('body').removeClass('no-scroll');
   });
-
 
   // tabs on detail
   $('.js-tab-trigger').on('click', function () {
@@ -310,43 +314,41 @@ document.addEventListener('DOMContentLoaded', () => {
     tab.addClass('is-active');
   });
 
-  // move and accord for mobile tabs
+  // create copy and put from tabs in mobile accordeon
   if ($(window).width() < 769) {
     let accordsContent = document.querySelectorAll('.js-accord-content');
 
-    $('.js-tab-content').each(function(index, item) {
+    $('.js-tab-content').each(function (index, item) {
       let content = item.innerHTML;
-
       accordsContent[index].innerHTML = content;
     });
   }
 
   // tabs on detail
   $('.js-accord-trigger').on('click', function () {
-
     let trigger = $(this),
       block = $(this).closest('.js-accord-block'),
       content = block.find('.js-accord-content');
 
-      trigger.toggleClass('is-active');
-      content.toggleClass('is-active');
+    trigger.toggleClass('is-active');
+    content.toggleClass('is-active');
   });
 
 
   if ($(window).width() < 768) {
+    // remove class, which needed for show/hide block and add class for open modal, for mobile
     $('.js-params-link')
-    .removeClass('js-params-link')
-    .addClass('js-open-modal')
-    .attr('data-modal', 'table-params');
+      .removeClass('js-params-link')
+      .addClass('js-open-modal')
+      .attr('data-modal', 'table-params');
 
-    // colors
-
+    // add class for open modal with coloes on mobile
     $('.js-color-trigger')
       .addClass('link js-open-modal')
       .attr('data-modal', 'another-colors');
   }
 
-  // params in tabs
+  // show/hide params in tab
   $('.js-params-link').click(function () {
     $(this).closest('.js-params').find('.js-params-hidden').toggleClass('is-active');
     $(this).toggleClass('is-active');
