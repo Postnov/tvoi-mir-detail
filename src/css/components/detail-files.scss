@@ -1,0 +1,39 @@
+.detail-files {
+  &__item {
+    &:not(:last-child) {
+      margin-bottom: 20px;
+    }
+  }
+}
+
+.file-item {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+
+
+  &__title,
+  &__size {
+    margin: 0;
+  }
+
+  &__info {
+    margin-left: 13px;
+  }
+
+  &__title {
+    font-size: 15px;
+    text-decoration: underline;
+    color: #005CC2;
+    cursor: pointer;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+  &__size {
+    font-size: 13px;
+    color: #565B61;
+    margin-top: 2px;
+  }
+}

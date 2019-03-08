@@ -1,45 +1,111 @@
 .addition-products {
-    &__title {
-        font-size: 25px;
-        font-weight: 500;
-        line-height: 1.2;
-        margin-bottom: 25px;
+
+  @include _768 {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  &__title {
+    font-size: 25px;
+    font-weight: 500;
+    line-height: 1.2;
+    margin-bottom: 25px;
+
+    @include _768 {
+      font-size: 18px;
+    }
+  }
+
+  &__item {
+    margin-bottom: 40px;
+
+    @include _768 {
+      margin-bottom: 15px;
     }
 
-    &__item {
-        margin-bottom: 40px;
+    @include _650 {
+      width: 100%;
     }
+  }
 }
 
 .addition-product {
-    text-align: center;
+  text-align: center;
 
-    &__img-wrapp {
-        width: 100px;
-        height: 100px;
-        border-radius: 50%;
-        overflow: hidden;
-        position: relative;
-        margin: 0 auto;
+  @include _768 {
+    text-align: left;
+    padding: 0;
+
+    color: #565B61;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-right: 25px;
+  }
+
+  @include _650 {
+    padding-right: 0;
+  }
+
+  .blue-tip {
+    display: none;
+
+    @include _768 {
+      display: block;
+      width: 18px;
+      height: 18px;
     }
-    &__img {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
+  }
+
+  &__img-wrapp {
+    display: block;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    overflow: hidden;
+    position: relative;
+    margin: 0 auto;
+
+    @include _768 {
+      display: none;
     }
-    &__name {
-        font-size: 16px;
-        font-weight: 600;
-        line-height: 1.2;
-        margin: 14px 0 8px;
+  }
+
+  &__img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  &__name {
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.2;
+    margin: 14px 0 8px;
+
+    @include _768 {
+      font-size: 15px;
+      font-weight: 400;
+      margin: 0;
     }
-    &__tip {
-        color: #565b61;
-        font-size: 14px;
-        font-weight: 400;
-        line-height: 1;
-        border-bottom: 1px solid;
-        cursor: pointer;
+  }
+
+  &__tip {
+    color: #565b61;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1;
+    border-bottom: 1px solid;
+    cursor: pointer;
+
+    &:hover {
+      border-color: transparent;
     }
+
+    @include _768 {
+      display: none;
+    }
+  }
 }

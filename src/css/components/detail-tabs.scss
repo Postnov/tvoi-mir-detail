@@ -1,0 +1,153 @@
+.detail-tabs {
+  margin-top: 50px;
+  margin-bottom: 50px;
+
+  @include _768 {
+    margin-top: 30px;
+    margin-bottom: 30px;
+
+    padding: 0 10px;
+  }
+
+  &.js-tabs {
+    @include _768 {
+      display: none;
+    }
+  }
+  &.js-accord {
+    display: none;
+    @include _768 {
+      display: block;
+    }
+  }
+
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+  }
+
+  &__tab {
+    padding: 14px 30px;
+    font-size: 15px;
+    font-weight: 600;
+    transition: .3s background-color, border-color, color;
+    cursor: pointer;
+    background-color: #FFF;
+    border: 1px solid #E5E5E5;
+    position: relative;
+
+    @include _768 {
+      border-left: none;
+      border-right: none;
+      padding-left: 0;
+      margin-top: -1px;
+      font-size: 18px;
+    }
+
+    &:not(:first-child) {
+      margin-left: 2px;
+    }
+
+    &:hover {
+      background-color: #4d9ffd;
+      color: #fff;
+      border-color: #4d9ffd;
+
+      @include _768 {
+        border-color:#E5E5E5;
+        background-color: transparent;
+        color: #000;
+      }
+    }
+
+    &.is-active {
+      background-color: #005cc2;
+      color: #fff;
+      border-color: #005cc2;
+
+      @include _768 {
+        background-color: #fff;
+        border-color: #e5e5e5;
+        color: #000;
+      }
+
+      &::before {
+        display: block;
+
+        @include _768 {
+          transform: translateY(-50%) rotate(180deg);
+        }
+      }
+    }
+
+    &::before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      bottom: -6px;
+      width: 0;
+      height: 0;
+      border-style: solid;
+      border-width: 6px 5.5px 0 5.5px;
+      border-color: #005cc2 transparent transparent transparent;
+      display: none;
+      transition: .3s all;
+
+      @include _768 {
+        display: block;
+        left: auto;
+        right: 0;
+        bottom: auto;
+        top: 50%;
+        transform: translateY(-50%);
+        border: none;
+        display: inline-block;
+        width: 14px;
+        height: 9px;
+        background-size: cover;
+        background-image: url("data:image/svg+xml,%3Csvg width='14' height='9' viewBox='0 0 14 9' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L7 7L13 1' stroke='black' stroke-width='2'/%3E%3C/svg%3E%0A");
+      }
+    }
+
+    @include _768 {
+      width: 100%;
+
+      &:not(:first-child) {
+        margin-left: 0;
+        margin-top: -1px;
+      }
+    }
+  }
+
+  &__tab-content {
+    display: none;
+    border: 1px solid #E5E5E5;
+    margin-top: -1px;
+
+    &.is-active {
+      display: block;
+    }
+
+    @include _768 {
+      border: none;
+      padding-bottom: 30px;
+    }
+  }
+
+  &__descr,
+  &__files {
+    padding: 40px;
+
+    @include _768 {
+      padding: 20px;
+      padding-left: 0;
+      padding-right: 0;
+    }
+  }
+}
+
+
+

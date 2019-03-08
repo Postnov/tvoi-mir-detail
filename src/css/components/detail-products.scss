@@ -1,67 +1,95 @@
 .detail-products {
-    margin-bottom: 50px;
+  margin-bottom: 50px;
 
-    &__title {
-        font-size: 25px;
-        font-weight: 600;
-        line-height: 1.2;
-        margin-bottom: 15px;
+  @include _768 {
+    margin-top: 30px;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  &__product {
+    &:hover {
+      .product__title {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  &__title {
+    font-size: 25px;
+    font-weight: 600;
+    line-height: 1.2;
+    margin-bottom: 15px;
+
+    @include _768 {
+      font-size: 18px;
+    }
+  }
+
+  &__slider {
+    position: relative;
+
+    .slick-list {
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
     }
 
-    &__slider {
-        position: relative;
-        .slick-list {
-            box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
-        }
-        .slick-slide {
-            img {
-                display: inline-block;
-                outline: none;
-            }
-            a {
-                outline: none !important;
-            }
-        }
+    .slick-slide {
+      img {
+        display: inline-block;
+        outline: none;
+      }
+
+      a {
+        outline: none !important;
+      }
     }
-    &__slider-arrow {
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-        z-index: 100;
+  }
 
-        background-color: $orange;
-        width: 30px;
-        height: 30px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border-radius: 50%;
-        flex-wrap: wrap;
-        cursor: pointer;
+  &__slider-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 100;
 
-        &.slick-disabled {
-            opacity: 0;
-        }
+    background-color: $orange;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    flex-wrap: wrap;
+    cursor: pointer;
 
-        &.arrow-next {
-            right: -15px;
-            svg {
-                transform: rotate(-90deg) translateY(2px);
-            }
-        }
-
-        &.arrow-prev {
-            left: -15px;
-        }
-
-        svg {
-            stroke: #fff;
-            width: 15px;
-            height: 15px;
-            transform: rotate(90deg);
-        }
+    &.slick-disabled {
+      opacity: 0;
     }
-    &__slide {
-        padding: 0;
+
+    &.arrow-next {
+      right: -15px;
+
+      svg {
+        transform: rotate(-90deg) translateY(2px);
+      }
     }
+
+    &.arrow-prev {
+      left: -15px;
+    }
+
+    svg {
+      stroke: #fff;
+      width: 15px;
+      height: 15px;
+      transform: rotate(90deg) translate(-1px, 1px);
+    }
+
+    @include _768 {
+      display: none;
+    }
+  }
+
+  &__slide {
+    padding: 0;
+  }
 }

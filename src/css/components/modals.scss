@@ -15,10 +15,11 @@
 }
 
 .overlay-white {
-  background-color: rgba(255,255,255, .6);
+  background-color: rgba(255, 255, 255, .6);
 }
 
 .modal {
+  $modal: &;
   z-index: 1000;
   opacity: 0;
   visibility: hidden;
@@ -34,11 +35,41 @@
 
   background-color: #fff;
   transition: .3s all;
+  zoom: 1.05;
+
+
+  &[data-modal='buy-success'] {
+    .modal-accept__subtitle {
+      max-width: 350px;
+    }
+  }
+
 
   &.is-show {
     top: 50%;
     visibility: visible;
     opacity: 1;
+
+    @include _768 {
+      top: 0;
+      left: 0;
+    }
+  }
+
+  @include _768 {
+    min-width: auto;
+    width: 80%;
+    width: 100%;
+    left: 0;
+    top: 0;
+    transform: none;
+    max-width: unset;
+    max-height: 100%;
+    overflow-y: auto;
+    height: 100%;
+    padding-top: 70px;
+    border: none;
+    left: -100%;
   }
 
 
@@ -48,16 +79,38 @@
     align-items: center;
     justify-content: space-between;
     border-bottom: 1px solid rgba(215, 222, 228, .5);
+    background-color: #fff;
+
+    @include _768 {
+      position: fixed;
+      left: 0;
+      top: 0;
+      width: 100%;
+      padding: 0;
+      justify-content: flex-start;
+      z-index: 20;
+    }
   }
 
   &__title {
     font-weight: bold;
     font-size: 15px;
     text-transform: uppercase;
+    margin: 0;
+
+    @include _768 {
+      order: 2;
+      margin-left: 18px;
+    }
   }
 
   &__body {
     padding: 26px;
+
+    @include _768 {
+      padding-bottom: 70px;
+      padding-top: 0;
+    }
   }
 
   &__footer {
@@ -69,7 +122,7 @@
     }
   }
 
-  &__cross {
+  &__close {
     width: 14px;
     height: 14px;
     background-image: url('../images/icon-cross.svg');
@@ -80,6 +133,22 @@
 
     &:hover {
       transform: rotate(90deg);
+    }
+
+    @include _768 {
+      order: 1;
+      height: 55px;
+      width: 55px;
+      background-size: 13px 20px;
+      background-position: center;
+
+      background-color: $blue;
+      background-image: url("data:image/svg+xml,%3Csvg width='13' height='20' viewBox='0 0 13 20' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18L3 10L11 2' stroke='white' stroke-width='3'/%3E%3C/svg%3E%0A");
+
+      &:hover {
+        transform: none;
+        background-color: lighten($blue, 5%);
+      }
     }
   }
 }
@@ -98,14 +167,17 @@
 
   td {
     display: inline-block;
+
     &:first-child {
       width: 140px;
       margin-right: 20px;
     }
+
     &:last-child {
       font-size: 13px;
       color: #565b61;
     }
+
     &.rest-on {
       color: #009933;
     }
@@ -128,6 +200,10 @@
     justify-content: space-between;
     flex-wrap: wrap;
     margin-bottom: 10px;
+
+    @include _768 {
+      margin-bottom: 0;
+    }
   }
 
   &__grid {
@@ -137,12 +213,23 @@
     }
   }
 
-  &__grid-2  input {
+  &__grid-2 input {
     width: 49%;
   }
 
-  &__grid-3 input{
+  &__grid-3 input {
     width: 32%;
+  }
+
+  &__grid,
+  &__grid-2,
+  &__grid-3 {
+    input, textarea {
+      @include _768 {
+        width: 100%;
+        margin-bottom: 10px;
+      }
+    }
   }
 
   &__field {
@@ -162,16 +249,19 @@
       color: #000;
       font-weight: 400;
     }
+
     &::-moz-placeholder {
       font-size: 14px;
       color: #000;
       font-weight: 400;
     }
+
     &:-ms-input-placeholder {
       font-size: 14px;
       color: #000;
       font-weight: 400;
     }
+
     &:-moz-placeholder {
       font-size: 14px;
       color: #000;
@@ -199,6 +289,13 @@
     &:hover {
       background-color: darken(#ff8a02, 3%);
     }
+
+    @include _768 {
+      position: fixed;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+    }
   }
 }
 
@@ -208,6 +305,7 @@
   &__block {
     margin-bottom: 15px;
   }
+
   &__title {
     margin: 0;
     font-weight: 700;
@@ -228,10 +326,19 @@
   max-width: 500px;
   width: 100%;
 
-  .modal__cross {
+  @include _768 {
+    padding: 20px;
+  }
+
+  .modal__close {
     position: absolute;
     top: 30px;
     right: 30px;
+
+    @include _768 {
+      left: 0;
+      top: 0;
+    }
   }
 
   &__title {
@@ -240,12 +347,17 @@
     width: 100%;
     margin: 14px 0 0;
   }
+
   &__subtitle {
     color: #565b61;
     font-size: 15px;
     font-weight: 400;
     max-width: 265px;
     margin: 0 auto 0;
+
+    a {
+      color: #165CBE;
+    }
   }
 }
 
@@ -253,10 +365,17 @@
 .modal-tip {
   padding: 40px 20px;
 
-  .modal__cross {
+  .modal__close {
     position: absolute;
     top: 20px;
     right: 20px;
+
+    @include _768 {
+      left: 0;
+      top: 0;
+      right: auto;
+
+    }
   }
 
   &__text {

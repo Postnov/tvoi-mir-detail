@@ -7,6 +7,10 @@ body {
   &.no-scroll {
     overflow: hidden;
     padding-right: 16px;
+
+    @include _979 {
+      padding-right: 0;
+    }
   }
 }
 
@@ -28,6 +32,11 @@ img {
     font-weight: 600;
     margin-bottom: 50px;
     max-width: 780px;
+
+    @include _768 {
+      padding-left: 10px;
+      padding-right: 10px;
+    }
   }
 }
 
@@ -41,4 +50,18 @@ img {
 
 svg use {
   pointer-events: none;
+}
+
+.detail-page {
+  &.container {
+    @include _480 {
+      padding: 0;
+    }
+  }
+  .breadcrumb {
+    @include _768 {
+      padding-left: 10px;
+      padding-right: 10px;
+    }
+  }
 }
