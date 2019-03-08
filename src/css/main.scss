@@ -2,7 +2,7 @@
 @import 'base/media-mixin.scss';
 
 //libs
-@import 'libs/bootstrap-grid.min.scss';
+// @import 'libs/bootstrap-grid.min.scss';
 
 //base
 @import 'base/normalize.scss';
@@ -20,6 +20,9 @@
 @import 'components/detail-info.scss';
 @import 'components/modals.scss';
 @import 'components/breadcrumbs.scss';
+@import 'components/detail-tabs.scss';
+@import 'components/detail-table.scss';
+@import 'components/detail-files.scss';
 // @import 'components';
 
 
